@@ -1,0 +1,161 @@
+<%= form_with(model: employee, html: {class: 'form-horizontal'}) do |form| %>
+  <% if employee.errors.any? %>
+    <div class="alert alert-danger">
+      <p><%= pluralize(employee.errors.count, "erro impediu", "erros impediram") %> que o funcionário fosse cadastrado:</p>
+
+      <ul>
+        <% employee.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h3>Informações pessoais:</h2>
+
+  <div class="form-group">
+    <%= form.label :name, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :name, class: 'form-control', placeholder: 'Antonio Silva' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+     <%= form.label :birthdate, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.date_field :birthdate, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :gender, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= select_tag "employee[gender]", options_for_select([['Masculino', 'Masculino'], ['Feminino', 'Feminino'], ['Outros', 'Outros']], 'Masculino'), class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+     <%= form.label :cpf, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :cpf, class: 'form-control', id: 'cpf', placeholder: '001.002.003-45' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+      <%= form.label :rg, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :rg, class: 'form-control', id: 'rg', placeholder: '001.002.003' %>
+    </div>
+  </div>
+
+  <h3>Informações de contato:</h3>
+  <div class="form-group">
+      <%= form.label :phone, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :phone, class: 'form-control', id: 'phone', placeholder: '(84) 9 0000-0000' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+      <%= form.label :email, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :email, class: 'form-control', placeholder: 'email@gmail.com' %>
+    </div>
+  </div>
+
+  <h3>Endereço:</h3>
+  <!-- Campos de Endereço -->
+  <%= form.fields_for :address do |address_form| %>
+    <%= address_form.hidden_field :id %>
+    
+    <div class="form-group">
+        <%= address_form.label :street, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+        <%= address_form.text_field :street, class: 'form-control', placeholder: 'Rua Olivacy Rodrigues' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <%= address_form.label :number, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+        <%= address_form.number_field :number, class: 'form-control', placeholder: '15' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <%= address_form.label :complement, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+        <%= address_form.text_field :complement, class: 'form-control', placeholder: 'Apt. 42, Bloco 5' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <%= address_form.label :neighborhood, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+        <%= address_form.text_field :neighborhood, class: 'form-control', placeholder: 'Aeroporto I' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <%= address_form.label :city, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+        <%= address_form.text_field :city, class: 'form-control', placeholder: 'Mossoró' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <%= address_form.label :state, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+        <%= address_form.text_field :state, class: 'form-control', placeholder: 'RN' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <%= address_form.label :cep, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+        <%= address_form.text_field :cep, id: 'cep', class: 'form-control', placeholder: '00000-000' %>
+      </div>
+    </div>
+
+  <% end %>
+
+<h3>Informações Profissionais</h3>
+  
+  <div class="form-group">
+      <%= form.label :positions_id, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <% if @positions.nil? %>
+        <%= select_tag "employee[positions_id]", options_for_select(['Não há cargos para selecionar']), disabled:true, class: 'form-control' %>
+      <% else %>
+        <%= form.collection_select :positions_id, @positions, :id, :name, {}, { class: 'form-control' } %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group">
+      <%= form.label :hire_date, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.date_field :hire_date, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+      <%= form.label :salary, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :salary, class: 'form-control', placeholder: '1424.00' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+      <%= form.label :status, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= select_tag "employee[status]", options_for_select([['Ativo', 'Ativo'], ['Inativo', 'Inativo'], ['Em Licença', 'Em Licença']], 'Ativo'), class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= form.submit class: 'btn btn-primary' %>
+      <%= link_to 'Cancelar', employees_path, class: 'btn btn-default' %>
+    </div>
+<% end %>

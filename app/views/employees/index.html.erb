@@ -1,0 +1,75 @@
+<% if (n = notice).present? %><p class="alert alert-warning"><%= n %></p><% end %>
+
+<h1>
+  Funcionários
+
+  &nbsp;
+  <%= link_to new_employee_path, class: 'btn btn-sm btn-default' do %>
+    <i class="fa fa-plus"></i> Adicionar
+  <% end %>
+</h1>
+
+<!-- Filtros -->
+<div class="filters">
+  <!-- Filtro por Departamento -->
+  <%= form_with url: employees_path, method: :get, local: true do %>
+    <div class="form-group">
+      <%= label_tag :department_id, "Filtrar por Departamento" %>
+      <%= select_tag :department_id, options_from_collection_for_select(Department.all, :id, :name), prompt: "Selecione um departamento", class: "form-control" %>
+      <%= submit_tag "Filtrar", class: "btn btn-sm btn-primary" %>
+    </div>
+  <% end %>
+
+  <!-- Filtro por intervalo de Data de Contratação -->
+  <%= form_with url: employees_path, method: :get, local: true do %>
+    <div class="form-group">
+      <%= label_tag :start_date, "Data Inicial" %>
+      <%= date_field_tag :start_date, params[:start_date], class: "form-control" %>
+      <%= label_tag :end_date, "Data Final" %>
+      <%= date_field_tag :end_date, params[:end_date], class: "form-control" %>
+      <%= submit_tag "Filtrar por Data", class: "btn btn-sm btn-primary" %>
+    </div>
+  <% end %>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Cargo</th>
+      <th>Salário</th>
+      <th>Data de Contratação</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.name %></td>
+        <td><%= employee.position.name %></td>
+        <td><%= number_to_currency employee.salary %></td>
+        <td><%= employee.hire_date %></td>
+        <td><%= employee.status %></td>
+        <td nowrap>
+          <%= link_to employee, class: 'inline-form' do %>
+            <button class="btn btn-sm btn-info" type="submit">
+              <i class="fa fa-eye"></i> Visualizar
+            </button>
+          <% end %>
+          <%= link_to edit_employee_path(employee), class: 'inline-form' do %>
+            <button class="btn btn-sm btn-primary" type="submit">
+              <i class="fa fa-edit"></i> Editar
+            </button>
+          <% end %>
+          <%= form_with model: employee, method: :delete, data: { turbo_confirm: 'Você tem certeza de que deseja remover este funcionário?' }, class: 'inline-form delete-form' do %>
+            <button class="btn btn-sm btn-danger" type="submit">
+              <i class="fa fa-trash"></i> Remover
+            </button>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

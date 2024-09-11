@@ -1,0 +1,70 @@
+<% if User.exists?(access_level: 'admin')%>
+    <h2>Registrar</h2>
+<% else %>
+  <h2>Registrar Admin</h2>
+<% end %>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-horizontal' }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="form-group">
+    <%= f.label :name, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Seu nome' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'Seu email' %>
+    </div>
+  </div>
+
+  <% if User.exists?(access_level: 'admin') %>
+    <div class="form-group">
+      <%= f.label :access_level, class: 'col-sm-2 control-label'  %>
+      <div class="col-sm-10">
+        <%= select_tag "user[access_level]", options_for_select([['Admin', 'admin'], ['Gestor de RH', 'hr_manager']], 'Admin'), class: 'form-control' %>
+      </div>
+    </div>
+  <% else %>
+    <!-- Tranca o nível de acesso como admin para o primeiro usuário -->
+    <%= f.hidden_field :access_level, value: 'admin' %>
+  <% end %>
+
+  <% if User.exists?%>
+    <div class="form-group">
+      <%= f.label :departments, 'Departamentos', class: 'col-sm-2 control-label'%>
+      <div class="col-sm-10">
+        <%= f.collection_select :department_ids, Department.where.not(name: "Sem Departamento"), :id, :name, { multiple: true }, class: 'form-control' %>
+      </div>
+    </div>
+  <% else %>
+
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :password, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', placeholder: 'Senha' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', placeholder: 'Confirme sua senha' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "Sign up", class: 'btn btn-primary' %>
+      <%= link_to 'Cancelar', root_path, class: 'btn btn-default' %>
+    </div>
+  </div>
+<% end %>

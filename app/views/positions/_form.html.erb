@@ -1,0 +1,79 @@
+<%= form_with(model: position, html: {class: 'form-horizontal'}) do |form| %>
+  <% if position.errors.any? %>
+    <div class="alert alert-danger">
+      <p><%= pluralize(position.errors.count, "erro impediu", "erros impediram") %> que o cargo fosse cadastrado:</p>
+
+      <ul>
+        <% position.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :name, class: 'form-control', placeholder: 'Unidade de Mossoró' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_area :description, class: 'form-control', placeholder: 'Unidade de Mossoró' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+      <%= form.label :department_id, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <% if @departments.nil? %>
+        <%= select_tag "positions[department_id]", options_for_select(['Não há departamentos para selecionar']), disabled:true, class: 'form-control' %>
+      <% else %>
+        <%= form.collection_select :department_id, @departments, :id, :name, {}, { class: 'form-control' } %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :level, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= select_tag "position[level]", options_for_select([['Junior', 'Junior'], ['Pleno', 'Pleno'], ['Senior', 'Senior'], ['Não se aplica', 'Não se aplica']], 'Junior'), class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :base_salary, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :base_salary, class: 'form-control', placeholder: '1424.00' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :requirements, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_area :requirements, class: 'form-control', placeholder: 'Conhecimento básico de programação em ruby' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :benefits, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_area :benefits, class: 'form-control', placeholder: 'Auxílio transporte, plano de saúde...' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+      <%= form.label :status, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= select_tag "position[status]", options_for_select([['Ativo', 'Ativo'], ['Inativo', 'Inativo']], 'Ativo'), class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= form.submit class: 'btn btn-primary' %>
+      <%= link_to 'Cancelar', positions_path, class: 'btn btn-default' %>
+    </div>
+<% end %>

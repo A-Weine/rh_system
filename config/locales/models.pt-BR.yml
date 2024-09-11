@@ -1,0 +1,44 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      employee:
+        one: funcionário
+        other: funcionários
+      position:
+        one: cargo
+        other: cargos
+      department:
+        one: departamento
+        other: departamentos
+
+    attributes:
+      employee:
+        name: Nome
+        birthdate: Data de nascimento
+        gender: Gênero
+        phone: Celular
+        positions_id: Cargo
+        hire_date: Data de contratação
+        salary: Salário
+      address:
+        street: Rua
+        complement: Complemento
+        neighborhood: Bairro
+        city: Cidade
+        state: Estado
+      position:
+        name: Nome
+        description: Descrição
+        department_id: Departamento
+        level: Nível
+        base_salary: Salário base
+        requirements: Requisitos
+        benefits: Beneficíos
+      department:
+        code: Código
+        name: Nome
+        description: Descrição
+        location: Localização
+        
+      

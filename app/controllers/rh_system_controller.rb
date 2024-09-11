@@ -1,0 +1,2 @@
+class RhSystemController < ApplicationController
+end

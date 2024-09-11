@@ -1,0 +1,2 @@
+module RhSystemHelper
+end

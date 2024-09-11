@@ -1,0 +1,60 @@
+#header {
+    background-color: #29422d;
+    padding: 30px 0;
+}  
+
+#top-search {
+    padding-top: 10px;
+
+    input {
+        width: 350px;
+    }
+}
+
+#main {
+    padding: 30px 0;
+    min-height: 450px;
+}
+
+#categories {
+    background-color: #052906;
+  
+    a {
+      color: #ffffff;
+      border-radius: 0;
+    }
+    a:hover {
+      background-color: #445a3d;
+    }
+    .active a {
+      background-color: #209238;
+    }
+}
+
+#saponalagoa {
+    text-align: center;
+    margin: 60px 0;
+  
+    .sapo {
+      margin-bottom: 60px;
+  
+      img {
+        max-height: 80px;
+      }
+  
+      .animal { margin-top: 5px; }
+      .race { margin-top: 10px; }
+      .view .btn {
+        margin-top: 10px;
+        border-radius: 0;
+        background-color: #0b310c;
+        border-color: #0b310c;
+      }
+    }
+}
+
+#footer {
+    background-color: #1a2b1d;
+    color: #ffffff;
+    padding: 30px 0;
+}

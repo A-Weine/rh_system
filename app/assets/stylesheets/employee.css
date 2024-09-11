@@ -1,0 +1,15 @@
+.inline-form{
+    display: inline;
+}
+.no-padding{
+    padding: 0!important;
+}
+
+.no-form-style{
+    
+    background: none; /* Remove o fundo do botão */
+    border: none; /* Remove a borda do botão */
+    cursor: pointer;
+    padding: 15px;
+    
+}

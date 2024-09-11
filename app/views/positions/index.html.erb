@@ -1,0 +1,63 @@
+<% if (n = notice).present? %><p class="alert alert-warning"><%= n %></p><% end %>
+
+<h1>
+  Cargos
+
+  &nbsp;
+  <%= link_to new_position_path, class: 'btn btn-sm btn-default' do %>
+    <i class="fa fa-plus"></i> Adicionar
+  <% end %>
+</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Cargo</th>
+      <th>Descrição</th>
+      <th>Departamento</th>
+      <th>Nível</th>
+      <th>Salário Base</th>
+      <th>Requisitos</th>
+      <th>Benefícios</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @positions.each do |position| %>
+      <!-- Verificar se o usuário tem acesso ao departamento do cargo ou se ele é admin -->
+      <% if current_user.admin? || current_user.departments.include?(position.department) %>
+        <% unless position.name == "Sem Cargo" %>
+          <tr>
+            <td><%= position.name %></td>
+            <td><%= position.description %></td>
+            <td><%= position.department.name %></td>
+            <td><%= position.level %></td>
+            <td><%= number_to_currency position.base_salary %></td>
+            <td><%= position.requirements %></td>
+            <td><%= position.benefits %></td>
+            <td><%= position.status %></td>
+            <td nowrap>
+              <%= link_to position, class: 'inline-form' do %>
+                <button class="btn btn-sm btn-info" type="submit">
+                  <i class="fa fa-eye"></i> Visualizar
+                </button>
+              <% end %>
+              <%= link_to edit_position_path(position), class: 'inline-form' do %>
+                <button class="btn btn-sm btn-primary" type="submit">
+                  <i class="fa fa-edit"></i> Editar
+                </button>
+              <% end %>
+              <%= form_with model: position, method: :delete, data: { turbo_confirm: 'Você tem certeza de que deseja remover este cargo?' }, class: 'inline-form delete-form' do %>
+                <button class="btn btn-sm btn-danger" type="submit">
+                  <i class="fa fa-trash"></i> Remover
+                </button>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
