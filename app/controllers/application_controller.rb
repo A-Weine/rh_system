@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   layout "admin" # Define layout para página admin
-  before_action :authenticate_user! # Pede para usuário se autenticar caso esteja deslogado.
+  before_action :authenticate_user!, if: :check_user_authentication? # Verifica se deve aplicar autenticação
   before_action :configure_permitted_parameters, if: :devise_controller? # Chama função que configura os parâmetros necessários para o Devise
 
   protected
@@ -24,5 +24,13 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def check_user_authentication?
+    if action_name == "new" || action_name == "create"
+      # Se não houver administradores, não precisa de autenticação
+      User.admin.count > 0
+    else
+      true # Para outras ações, requer autenticação
+    end
+  end
   # Função para verificar se o controlador atual é a página inicial
 end
