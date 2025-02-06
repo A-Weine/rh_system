@@ -3,6 +3,9 @@
 <h1>
   Usuários
   &nbsp;
+  <%= link_to new_user_path, class: 'btn btn-sm btn-default' do %>
+    <i class="fa fa-plus"></i> Adicionar
+  <% end %>
 </h1>
 
 <table class="table table-striped">
@@ -19,26 +22,31 @@
   <tbody>
     <% @users.each do |user| %>
         <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><% if user.access_level == "admin" %>
-                <%= "Admin" %>
-            <% else %>
-                <%= "Gestor de RH" %>
-            <% end %></td>
-        <td><% if user.access_level == "admin" %>
-                <%= "Acesso à todos" %>
-            <% else %>
-                <%= user.departments.map(&:name).join(', ') %>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><% if user.access_level == "admin" %>
+                  <%= "Admin" %>
+              <% else %>
+                  <%= "Gestor de RH" %>
+              <% end %></td>
+          <td><% if user.access_level == "admin" %>
+                  <%= "Acesso à todos" %>
+              <% else %>
+                  <%= user.departments.map(&:name).join(', ') %>
+              <% end %>
+          </td>
+          <td nowrap>
+            <%= link_to edit_user_path(user), class: 'inline-form' do %>
+              <button class="btn btn-sm btn-primary" type="submit">
+                <i class="fa fa-edit"></i> Editar
+              </button>
             <% end %>
-        </td>
-        <td nowrap>
-            <%= form_with model: user, method: :delete, data: { turbo_confirm: 'Você tem certeza de que deseja remover este usuário?' }, class: 'inline-form delete-form' do %>
-            <button class="btn btn-sm btn-danger" type="submit">
+            <%= form_with model: user, method: :delete, data: { turbo_confirm: 'Você tem certeza de que deseja remover este cargo?' }, class: 'inline-form delete-form' do %>
+              <button class="btn btn-sm btn-danger" type="submit">
                 <i class="fa fa-trash"></i> Remover
-            </button>
+              </button>
             <% end %>
-        </td>
+          </td>
         </tr>
     <% end %>
     </tbody>
