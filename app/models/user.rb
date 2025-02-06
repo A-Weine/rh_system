@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable # Padrão do Devise
+  devise :database_authenticatable, :recoverable, :rememberable, :validatable # Padrão do Devise
 
   has_many :user_departments, dependent: :destroy # Relação com tabela de associação de usuários com departamentos, destrói linhas caso o usuário seja deletado.
   has_many :departments, through: :user_departments # Relação com departamento através da tabela de associação

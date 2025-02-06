@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users, only: [ :index, :destroy ]
+  resources :users, only: [ :index, :destroy, :new, :create, :edit, :update ]
   resources :positions
   resources :departments
   resources :employees
