@@ -31,13 +31,17 @@
         <% unless position.name == "Sem Cargo" %>
           <tr>
             <td><%= position.name %></td>
-            <td><%= position.description %></td>
+
+            <!-- Usando truncate para limitar o texto -->
+            <td><%= truncate(position.description, length: 40, omission: '...') %></td>
             <td><%= position.department.name %></td>
             <td><%= position.level %></td>
             <td><%= number_to_currency position.base_salary %></td>
-            <td><%= position.requirements %></td>
-            <td><%= position.benefits %></td>
+
+            <td><%= truncate(position.requirements, length: 40, omission: '...') %></td>
+            <td><%= truncate(position.benefits, length: 40, omission: '...') %></td>
             <td><%= position.status %></td>
+
             <td nowrap>
               <%= link_to position, class: 'inline-form' do %>
                 <button class="btn btn-sm btn-info" type="submit">
