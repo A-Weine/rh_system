@@ -2,9 +2,4 @@
 
 <%= render @position %>
 
-<div>
-  <%= link_to "Edit this position", edit_position_path(@position) %> |
-  <%= link_to "Back to positions", positions_path %>
-
-  <%= button_to "Destroy this position", @position, method: :delete %>
-</div>
+<%= link_to "Voltar", positions_path, class: "btn btn-default"%>
