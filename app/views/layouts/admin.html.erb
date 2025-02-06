@@ -12,6 +12,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
     <%= stylesheet_link_tag 'employee', media: 'all' %>
+    <%= stylesheet_link_tag 'login', media: 'all' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <!-- Font Awesome -->
@@ -60,7 +61,7 @@
           </div>
         </div>
       </nav>
-
+      <% if (a = alert).present? %><p class="alert alert-danger"><%= a %></p><% end %>
       <%= yield %>
 
     </div>

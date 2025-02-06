@@ -13,3 +13,12 @@
     padding: 15px;
     
 }
+
+.no-padding-x{
+    padding-left: 0!important;
+}
+
+.card-header-view{
+    padding:5px; 
+    border-radius: 3px;
+}

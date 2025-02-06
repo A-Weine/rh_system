@@ -5,6 +5,7 @@ class EmployeesController < ApplicationController
   # GET /employees or /employees.json
   def index
     @employees = Employee.all
+    @departments = Department.all
 
     # Filtrar por departamento através dos cargos
     if params[:department_id].present?
