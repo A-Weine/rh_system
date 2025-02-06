@@ -1,92 +1,65 @@
-<div id="<%= dom_id employee %>">
-  <p>
-    <strong>Name:</strong>
-    <%= employee.name %>
-  </p>
+<div class="card mb-4">
+  <div class="card-header bg-primary text-white card-header-view">
+    <h4 class="mb-0">Informações do Funcionário: <strong><%= employee.name %></strong></h4>
+  </div>
+  <div class="card-body">
 
-  <p>
-    <strong>Birthdate:</strong>
-    <%= employee.birthdate %>
-  </p>
+    <hr>
 
-  <p>
-    <strong>Gender:</strong>
-    <%= employee.gender %>
-  </p>
+    <div class="row">
+      <div class="col-md-6">
+        <p><strong>Nome:</strong> <%= employee.name %></p>
+        <p><strong>Data de Nascimento:</strong> <%= employee.birthdate %></p>
+        <p><strong>Gênero:</strong> <%= employee.gender %></p>
+        <p><strong>CPF:</strong> <%= employee.cpf %></p>
+        <p><strong>RG:</strong> <%= employee.rg %></p>
+        <p><strong>Telefone:</strong> <%= employee.phone %></p>
+        <p><strong>Email:</strong> <%= employee.email %></p>
+      </div>
+    </div>
 
-  <p>
-    <strong>Cpf:</strong>
-    <%= employee.cpf %>
-  </p>
+    <hr>
+  </div>
 
-  <p>
-    <strong>Rg:</strong>
-    <%= employee.rg %>
-  </p>
+  <div class="card-body">
+    <div class="card-header bg-primary text-white card-header-view">
+      <h4 class="mb-0">Endereço</h4>
+    </div>
 
-  <p>
-    <strong>Street:</strong>
-    <%= employee.address.street %>
-  </p>
+    <hr>
 
-  <p>
-    <strong>Number:</strong>
-    <%= employee.address.number %>
-  </p>
+    <div class="row">
+      <div class="col-md-6">
+        <p><strong>Rua:</strong> <%= employee.address.street %></p>
+        <p><strong>Número:</strong> <%= employee.address.number %></p>
+        <p><strong>Complemento:</strong> <%= employee.address.complement %></p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Bairro:</strong> <%= employee.address.neighborhood %></p>
+        <p><strong>Cidade:</strong> <%= employee.address.city %></p>
+        <p><strong>Estado:</strong> <%= employee.address.state %></p>
+        <p><strong>CEP:</strong> <%= employee.address.cep %></p>
+      </div>
+    </div>
+    <hr>
+  </div>
 
-  <p>
-    <strong>Complement:</strong>
-    <%= employee.address.complement %>
-  </p>
+  <div class="card-body">
+    <div class="card-header bg-primary text-white card-header-view">
+      <h4 class="mb-0">Informações de Contrato</h4>
+    </div>
 
-  <p>
-    <strong>Neighborhood:</strong>
-    <%= employee.address.neighborhood %>
-  </p>
+    <hr>
 
-  <p>
-    <strong>City:</strong>
-    <%= employee.address.city %>
-  </p>
+    <div class="row">
+      <div class="col-md-6">
+        <p><strong>Cargo:</strong> <%= employee.position.name %></p>
+        <p><strong>Data de contratação:</strong> <%= employee.hire_date %></p>
+        <p><strong>Salário:</strong> <%= number_to_currency(employee.salary) %></p>
+        <p><strong>Status:</strong> <%= employee.status %></p>
+      </div>
+    </div>
 
-  <p>
-    <strong>State:</strong>
-    <%= employee.address.state %>
-  </p>
-
-  <p>
-    <strong>Cep:</strong>
-    <%= employee.address.cep %>
-  </p>
-
-  <p>
-    <strong>Phone:</strong>
-    <%= employee.phone %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= employee.email %>
-  </p>
-
-  <p>
-    <strong>Position:</strong>
-    <%= employee.position.name %>
-  </p>
-
-  <p>
-    <strong>Hire date:</strong>
-    <%= employee.hire_date %>
-  </p>
-
-  <p>
-    <strong>Salary:</strong>
-    <%= employee.salary %>
-  </p>
-
-  <p>
-    <strong>Status:</strong>
-    <%= employee.status %>
-  </p>
-
+    <hr>
+  </div>
 </div>

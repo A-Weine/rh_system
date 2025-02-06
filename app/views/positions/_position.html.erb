@@ -1,42 +1,74 @@
-<div id="<%= dom_id position %>">
-  <p>
-    <strong>Name:</strong>
-    <%= position.name %>
-  </p>
+<div class="card mb-4">
+  <div class="card-header bg-primary text-white card-header-view">
+    <h4 class="mb-0">Informações do Cargo: <strong><%= position.name %></strong></h4>
+  </div>
+  
+  <div class="card-body">
 
-  <p>
-    <strong>Description:</strong>
-    <%= position.description %>
-  </p>
+    <hr>
 
-  <p>
-    <strong>Department:</strong>
-    <%= position.department_id %>
-  </p>
+    <div class="row">
+      <div class="col-md-6">
+        <p><strong>Nome:</strong> <%= position.name %></p>
+        <p><strong>Departamento:</strong> <%= position.department.name %></p>
+        <p><strong>Salário Base:</strong> <%= number_to_currency(position.base_salary) %></p>
+        <p><strong>Nível:</strong> <%= position.level %></p>
+        <p><strong>Status:</strong> <%= position.status %></p>
+      </div>
+    </div>
 
-  <p>
-    <strong>Level:</strong>
-    <%= position.level %>
-  </p>
+    <hr>
 
-  <p>
-    <strong>Base salary:</strong>
-    <%= position.base_salary %>
-  </p>
+  </div>
 
-  <p>
-    <strong>Requirements:</strong>
-    <%= position.requirements %>
-  </p>
+  <div class="card-body">
+    <div class="card-header bg-primary text-white card-header-view">
+      <h4 class="mb-0">Descrição do cargo</h4>
+    </div>
 
-  <p>
-    <strong>Benefits:</strong>
-    <%= position.benefits %>
-  </p>
+    <hr>
 
-  <p>
-    <strong>Status:</strong>
-    <%= position.status %>
-  </p>
+    <div class="row">
+      <div class="col-md-12">
+        <p><strong>Descrição:</strong> <%= position.description %></p>
+      </div>
+    </div>
 
+    <hr>
+
+  </div>
+
+  <div class="card-body">
+    <div class="card-header bg-primary text-white card-header-view">
+      <h4 class="mb-0">Requisitos do Cargo</h4>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-md-12">
+        <p><strong>Requisitos:</strong> <%= position.requirements %></p>
+      </div>
+    </div>
+
+    <hr>
+
+  </div>
+
+  <div class="card-body">
+    <div class="card-header bg-primary text-white card-header-view">
+      <h4 class="mb-0">Benefícios do Cargo</h4>
+    </div>
+    
+    <hr>
+
+    <div class="row">
+      <div class="col-md-12">
+        <p><strong>Benefícios:</strong> <%= position.benefits %></p>
+      </div>
+    </div>
+
+    <hr>
+    
+  </div>
 </div>
